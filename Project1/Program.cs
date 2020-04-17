@@ -27,7 +27,6 @@ namespace Project1
                 {
                     matrix [i,j]= " ";
                 }
-
             }
 
             // show the matrix

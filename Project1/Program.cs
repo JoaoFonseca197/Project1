@@ -7,38 +7,48 @@ namespace Project1
         static void Main(string[] args)
         {
             //variables
-            int[,] matriz = new int[8, 8];
 
-            //fazer lobo
-            //fazer ovelhas
-            //pedir input do jogador lobo
-            //pedir input do jogador ovelha
+
             board();
         }
         // Draws the Board
         static void board() 
         {
-            string horizontalbar = "---------------------------------";
-            string verticalbar = "| ";
-            string Numbers = ("1 2 3 4 5 6 7 8");
-            string letters = ("A B C D E F G H");
-            int lins = 8, cols = 8, i, j;
+            string [,] matrix;
+            int lins = 8, cols = 8;
             int[,] m = {  {1,2,3,4,5,6,7,8},
-                                            {1,2,3,4,5,6,7,8},
-                                            {1,2,3,4,5,6,7,8},
-                                            {1,2,3,4,5,6,7,8},
-                                            {1,2,3,4,5,6,7,8},
-                                            {1,2,3,4,5,6,7,8},
-                                            {1,2,3,4,5,6,7,8},
-                                            {1,2,3,4,5,6,7,8}, };
+            {1,2,3,4,5,6,7,8},
+            {1,2,3,4,5,6,7,8},
+            {1,2,3,4,5,6,7,8},
+            {1,2,3,4,5,6,7,8},
+            {1,2,3,4,5,6,7,8},
+            {1,2,3,4,5,6,7,8},
+            {1,2,3,4,5,6,7,8}, };
 
-            for (i = 0; i < lins; i++)
-            {
-                Console.WriteLine(horizontalbar);
-                for (j = 0; j < cols; j++)
-                    Console.Write(verticalbar + "{0} ", m[i, j]);
-                Console.WriteLine(verticalbar);
+
+            //Inicialize the matrix
+            matrix = new string [8,8];
+
+            //Fill the matrix with empty spaces
+            for (int i = 0; i < lins; i++)
+            { 
+                for (int j = 0; j < cols; j++)
+                {
+                    matrix [i,j]= " ";
+                }
+
             }
+
+
+            // show the matrix
+            for (int i = 0; i < lins; i++)
+            {
+                Console.WriteLine("-----------------");
+                for (int j = 0; j < cols; j++)
+                    Console.Write("|" +  matrix[i, j]);
+                Console.WriteLine("|");
+            }
+            Console.WriteLine("-----------------");
         }
     }
 }

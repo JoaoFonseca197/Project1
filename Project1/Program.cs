@@ -14,20 +14,41 @@ namespace Project1
             int[] x_values = new int[4] {1,3,5,7};
             int x = rnd.Next(x_values.Length);
             int X = x_values[x];
+            //Wolf Position
             int W_y = 0;
             int W_x = X;
+            //Sheep 1 position
+            int S1y = 7;
+            int S1x = 0;
+            //Sheep 2 position
+            int S2y = 7;
+            int S2x = 2;
+            //Sheep 3 position
+            int S3y = 7;
+            int S3x = 4;
+            //Sheep 4 position
+            int S4y = 7;
+            int S4x = 6;
 
-            
-            board( 0, X);
-
-            PLayer_Wolf(ref W_y,ref W_x); 
-            PLayer_Wolf(ref W_y,ref W_x);
-            PLayer_Wolf(ref W_y,ref W_x);
-            PLayer_Wolf(ref W_y,ref W_x);
-            PLayer_Wolf(ref W_y,ref W_x);
+            bool isWolfPlaying = true;
+            //Game cicle
+            do
+            {
+                board(W_y, W_x, S1y, S1x, S2y, S2x, S3y, S3x, S4y, S4x);
+                if (isWolfPlaying)
+                {
+                    PLayer_Wolf(ref W_y, ref W_x);
+                    isWolfPlaying = false;
+                }
+                else
+                {
+                    Player_Sheep(ref S1y, ref S1x, ref S2y, ref S2x, ref S3y, ref S3x, ref S4y, ref S4x);
+                    isWolfPlaying = true;
+                }
+            } while (true);//Mudar a condição conforme parametros de vitória
 
         }
-        
+
 
         /// <summary>
         /// This will show the commands to the player and then asks for a choice
@@ -48,6 +69,7 @@ namespace Project1
             
         }
 
+ 
 
         /// <summary>
         /// This method after the player´s <see cref="choice"/> will change the
@@ -65,7 +87,6 @@ namespace Project1
                 case 1 :
                     Wy -= 1;
                     Wx -= 1;
-                    board(Wy,Wx);
                     break;
                 //Up-right
                 case 2 :
@@ -76,23 +97,132 @@ namespace Project1
                 case 3 :
                     Wy += 1;
                     Wx -= 1;
-                    board(Wy,Wx);
                     break;
                 //Down-right
                 case 4:
                     Wy += 1;
                     Wx += 1;
-                    board(Wy,Wx);
                     break;
+
 
             }
         }
+
+        /// <summary>
+        /// Chooses one of the 4 sheeps available to move them
+        /// </summary>
+        private static int Sheep_Choice()
+        {
+            string sheep;
+            int Chosen_Sheep;
+            Console.WriteLine("Choose one of the Sheeps:");
+            Console.WriteLine("1, 2, 3, 4.");
+            while (true)
+            {
+                sheep = Console.ReadLine();
+                Chosen_Sheep = int.Parse(sheep);
+
+                switch (Chosen_Sheep)
+                {
+                    case 1:
+                        Console.WriteLine("S1");
+                        return 1;
+                    case 2:
+                        Console.WriteLine("S2");
+                        return 2;
+                    case 3:
+                        Console.WriteLine("S3");
+                        return 3;
+                    case 4:
+                        Console.WriteLine("S4");
+                        return 4;
+                    default:
+                        Console.WriteLine("Unvalid Sheep, please choose again.");
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Calls the function to choose which cheep
+        /// Moves the selected cheep
+        /// </summary>
+        /// <param name="S1y"></param>
+        /// <param name="S1x"></param>
+        /// <param name="S2y"></param>
+        /// <param name="S2x"></param>
+        /// <param name="S3y"></param>
+        /// <param name="S3x"></param>
+        /// <param name="S4y"></param>
+        /// <param name="S4x"></param>
+        private static void Player_Sheep(ref int S1y, ref int S1x,
+                                         ref int S2y, ref int S2x,
+                                         ref int S3y, ref int S3x,
+                                         ref int S4y, ref int S4x)
+        {
+            //Choose a Sheep
+            int sChoice = Sheep_Choice();
+            string str;
+            int Movement;
+            Console.WriteLine("Sheep Commands");
+            Console.WriteLine("1. \u2B09 2. \u2B08 ");
+            str = Console.ReadLine();
+            Movement = int.Parse(str);
+
+            switch(sChoice)
+            {
+                case 1:
+                    Sheep_Movement(Movement, ref S1y, ref S1x);
+                    break;
+                case 2:
+                    Sheep_Movement(Movement, ref S2y, ref S2x);
+                    break;
+                case 3:
+                    Sheep_Movement(Movement, ref S3y, ref S3x);
+                    break;
+                case 4:
+                    Sheep_Movement(Movement, ref S4y, ref S4x);
+                    break;
+            }
+            
+
+
+
+        }
+
+        /// <summary>
+        /// Moves the previously selected cheep only in the upward direction
+        /// </summary>
+        /// <param name="sChoice"></param>
+        /// <param name="sy"></param>
+        /// <param name="sx"></param>
+        private static void Sheep_Movement(int sChoice, ref int sy, ref int sx)
+        {
+            switch (sChoice)
+            {
+                //Up-left
+                case 1:
+                    sy -= 1;
+                    sx -= 1;
+                    break;
+                //Up-right
+                case 2:
+                    sy -= 1;
+                    sx += 1;
+                    break;
+            }
+        }
+
         /// <summary>
         /// Draws the board with the position of the wolf
         /// </summary>
         /// <param name="Wy">Position of the Wolf in Y coodinates</param>
         /// <param name="Wx">Position of the Wolf in X coodinates</param>
-        private static void board(int Wy , int Wx) 
+        private static void board(int Wy, int Wx,
+                                  int S1y, int S1x,
+                                  int S2y, int S2x,
+                                  int S3y, int S3x,
+                                  int S4y, int S4x) 
         {
             string [,] matrix;
             int lins = 8, cols = 8;
@@ -110,10 +240,13 @@ namespace Project1
                     matrix [i,j]= "   ";
                 }
             }
-
-            matrix[Wy,Wx] = " W ";
-
             
+            matrix[Wy,Wx] = " W ";
+            matrix[S1y, S1x] = " 1 ";
+            matrix[S2y, S2x] = " 2 ";
+            matrix[S3y, S3x] = " 3 ";
+            matrix[S4y, S4x] = " 4 ";
+
             // show the matrix
             for (int i = 0; i < lins; i++)
             {

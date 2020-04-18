@@ -27,7 +27,14 @@ namespace Project1
             PLayer_Wolf(ref W_y,ref W_x);
 
         }
+        
 
+        /// <summary>
+        /// This will show the commands to the player and then asks for a choice
+        /// Then after choosing we call the method <see cref="Wolf_movement"/> 
+        /// </summary>
+        /// <param name="W_y">Position of the Wolf in Y coodinates</param>
+        /// <param name="W_x">Position of the Wolf in X coodinates</param>
         private static void PLayer_Wolf (ref int W_y, ref int W_x)
         {
             string str;
@@ -40,26 +47,38 @@ namespace Project1
             Wolf_movement(Movement,ref W_y,ref W_x);
             
         }
-        // Draws the Board
 
-         private static void Wolf_movement ( int choice, ref int Wy , ref int Wx)
+
+        /// <summary>
+        /// This method after the player´s <see cref="choice"/> will change the
+        /// coordinates
+        /// </summary>
+        /// <param name="choice">Choices are 1 through 4 and each 
+        /// represents a direction</param>
+        /// <param name="Wy">Position of the Wolf in Y coodinates</param>
+        /// <param name="Wx">Position of the Wolf in X coodinates</param>
+        private static void Wolf_movement ( int choice, ref int Wy , ref int Wx)
         {
             switch (choice)
             {
+                //Up-left
                 case 1 :
                     Wy -= 1;
                     Wx -= 1;
                     board(Wy,Wx);
                     break;
+                //Up-right
                 case 2 :
                     Wy -= 1;
                     Wx += 1;
                     break;
+                //Down-left
                 case 3 :
                     Wy += 1;
                     Wx -= 1;
                     board(Wy,Wx);
                     break;
+                //Down-right
                 case 4:
                     Wy += 1;
                     Wx += 1;
@@ -68,7 +87,11 @@ namespace Project1
 
             }
         }
-        // Draws the Board
+        /// <summary>
+        /// Draws the board with the position of the wolf
+        /// </summary>
+        /// <param name="Wy">Position of the Wolf in Y coodinates</param>
+        /// <param name="Wx">Position of the Wolf in X coodinates</param>
         private static void board(int Wy , int Wx) 
         {
             string [,] matrix;

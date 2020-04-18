@@ -47,24 +47,24 @@ namespace Project1
             {
                 for (int j = 0; j < cols; j++)
                 {
-                    matrix [i,j]= "  ";
+                    matrix [i,j]= "   ";
                 }
             }
 
-            matrix[Wy,Wx] = "W";
+            matrix[Wy,Wx] = " W ";
 
             
             // show the matrix
             for (int i = 0; i < lins; i++)
             {
-                Console.WriteLine("  -------------------------");
+                Console.WriteLine("  ---------------------------------");
                 Console.Write((i + 1) + " ");
                 for (int j = 0; j < cols; j++)
                     Console.Write( "|" +  matrix[i, j]);
                 Console.WriteLine("|");
             }
-            Console.WriteLine("  -------------------------");
-            Console.WriteLine("    A   B   C   D   E   F  ");
+            Console.WriteLine("  ---------------------------------");
+            Console.WriteLine("    A   B   C   D   E   F   G   H  ");
         }
          private static void Wolf ()
         {

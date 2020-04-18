@@ -19,18 +19,54 @@ namespace Project1
 
             
             board( 0, X);
-            Console.WriteLine("Wolf Commands");
-            Console.WriteLine("1. \u2B09 2. \u2B08 ");
-            Console.WriteLine("3. \u2B0B 4. \u2B0A ");
-            /*str = Console.ReadLine();
-            Movement = int.Parse(str);
-            Wolf_movement(Movement,ref W_y,ref W_x);*/
+
             PLayer_Wolf(ref W_y,ref W_x); 
             PLayer_Wolf(ref W_y,ref W_x);
             PLayer_Wolf(ref W_y,ref W_x);
             PLayer_Wolf(ref W_y,ref W_x);
             PLayer_Wolf(ref W_y,ref W_x);
-                       
+
+        }
+
+        private static void PLayer_Wolf (ref int W_y, ref int W_x)
+        {
+            string str;
+            int Movement;
+            Console.WriteLine("Wolf Commands");
+            Console.WriteLine("1. \u2B09 2. \u2B08 ");
+            Console.WriteLine("3. \u2B0B 4. \u2B0A ");
+            str = Console.ReadLine();
+            Movement = int.Parse(str);
+            Wolf_movement(Movement,ref W_y,ref W_x);
+            
+        }
+        // Draws the Board
+
+         private static void Wolf_movement ( int choice, ref int Wy , ref int Wx)
+        {
+            switch (choice)
+            {
+                case 1 :
+                    Wy -= 1;
+                    Wx -= 1;
+                    board(Wy,Wx);
+                    break;
+                case 2 :
+                    Wy -= 1;
+                    Wx += 1;
+                    break;
+                case 3 :
+                    Wy += 1;
+                    Wx -= 1;
+                    board(Wy,Wx);
+                    break;
+                case 4:
+                    Wy += 1;
+                    Wx += 1;
+                    board(Wy,Wx);
+                    break;
+
+            }
         }
         // Draws the Board
         private static void board(int Wy , int Wx) 
@@ -66,41 +102,6 @@ namespace Project1
             }
             Console.WriteLine("  -------------------------");
             Console.WriteLine("    A   B   C   D   E   F  ");
-        }
-         private static void Wolf_movement ( int choice, ref int Wy , ref int Wx)
-        {
-            switch (choice)
-            {
-                case 1 :
-                    Wy -= 1;
-                    Wx -= 1;
-                    board(Wy,Wx);
-                    break;
-                case 2 :
-                    Wy -= 1;
-                    Wx += 1;
-                    break;
-                case 3 :
-                    Wy += 1;
-                    Wx -= 1;
-                    board(Wy,Wx);
-                    break;
-                case 4:
-                    Wy += 1;
-                    Wx += 1;
-                    board(Wy,Wx);
-                    break;
-
-            }
-        }
-        private static void PLayer_Wolf (ref int W_y, ref int W_x)
-        {
-            string str;
-            int Movement;
-            str = Console.ReadLine();
-            Movement = int.Parse(str);
-            Wolf_movement(Movement,ref W_y,ref W_x);
-            
         }
     }
 }

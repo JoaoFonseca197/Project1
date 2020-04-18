@@ -11,25 +11,26 @@ namespace Project1
             Console.OutputEncoding = Encoding.UTF8;
             //variables
             Random rnd = new Random ();
-            string str;
-            int Movement ;
             int[] x_values = new int[4] {1,3,5,7};
             int x = rnd.Next(x_values.Length);
             int X = x_values[x];
             int W_y = 0;
             int W_x = X;
-            int Test = new Tuple<int,int>(1,2);
+
             
-            board(W_y,W_x);
+            board( 0, X);
             Console.WriteLine("Wolf Commands");
             Console.WriteLine("1. \u2B09 2. \u2B08 ");
             Console.WriteLine("3. \u2B0B 4. \u2B0A ");
-            Console.WriteLine(Test);
-            str = Console.ReadLine();
+            /*str = Console.ReadLine();
             Movement = int.Parse(str);
-            //W_y,W_x = Wolf_movement(Movement,W_y,W_x);
-            Console.Write(X);
-            
+            Wolf_movement(Movement,ref W_y,ref W_x);*/
+            PLayer_Wolf(ref W_y,ref W_x); 
+            PLayer_Wolf(ref W_y,ref W_x);
+            PLayer_Wolf(ref W_y,ref W_x);
+            PLayer_Wolf(ref W_y,ref W_x);
+            PLayer_Wolf(ref W_y,ref W_x);
+                       
         }
         // Draws the Board
         private static void board(int Wy , int Wx) 
@@ -41,7 +42,6 @@ namespace Project1
             matrix = new string [8,8];
 
             //show position of wolf
-            matrix[Wy,Wx] = "W";
 
             //Fill the matrix with empty spaces
             for (int i = 0; i < lins; i++)
@@ -51,7 +51,7 @@ namespace Project1
                     matrix [i,j]= "  ";
                 }
             }
-
+            //show position of wolf
             matrix[Wy,Wx] = "W";
 
             
@@ -67,21 +67,40 @@ namespace Project1
             Console.WriteLine("  -------------------------");
             Console.WriteLine("    A   B   C   D   E   F  ");
         }
-         private static void Wolf_movement ( int choice, int Wy , int Wx)
+         private static void Wolf_movement ( int choice, ref int Wy , ref int Wx)
         {
             switch (choice)
             {
                 case 1 :
-
+                    Wy -= 1;
+                    Wx -= 1;
+                    board(Wy,Wx);
                     break;
                 case 2 :
+                    Wy -= 1;
+                    Wx += 1;
                     break;
                 case 3 :
+                    Wy += 1;
+                    Wx -= 1;
+                    board(Wy,Wx);
                     break;
                 case 4:
+                    Wy += 1;
+                    Wx += 1;
+                    board(Wy,Wx);
                     break;
 
             }
+        }
+        private static void PLayer_Wolf (ref int W_y, ref int W_x)
+        {
+            string str;
+            int Movement;
+            str = Console.ReadLine();
+            Movement = int.Parse(str);
+            Wolf_movement(Movement,ref W_y,ref W_x);
+            
         }
     }
 }

@@ -87,13 +87,8 @@ namespace Project1
                     matrix [i,j]= "   ";
                 }
             }
-<<<<<<< HEAD
 
             matrix[Wy,Wx] = " W ";
-=======
-            //show position of wolf
-            matrix[Wy,Wx] = "W";
->>>>>>> Movement_Wolf
 
             
             // show the matrix

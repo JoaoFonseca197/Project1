@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 
 namespace Project1
@@ -7,14 +8,24 @@ namespace Project1
     {
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.UTF8;
             //variables
             Random rnd = new Random ();
+            char up_left = '\u2B08'; 
+            char up_right = '\u2B09';
+            char down_left = '\u2B0A'; 
+            char down_right = '\u2B0B';
             int[] x_values = new int[4] {1,3,5,7};
             int x = rnd.Next(x_values.Length);
             int X = x_values[x];
             int W_y = 0;
             int W_x = X;
+            
             board(W_y,W_x);
+            Console.WriteLine("Wolf Commands");
+            Console.WriteLine("1. \u2B09 2. \u2B08 ");
+            Console.WriteLine("3. \u2B0B 4. \u2B0A ");
+            Console.ReadLine();
             Wolf();
             Console.Write(X);
             

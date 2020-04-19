@@ -88,23 +88,55 @@ namespace Project1
             {
                 //Up-left
                 case '1':
-                    Wy -= 1;
-                    Wx -= 1;
+                    if(Wy == 0 || Wx == 0)
+                    {
+                        Console.WriteLine("You can´t go that way");
+                        PLayer_Wolf(ref Wy, ref Wx);
+                    }
+                    else
+                    {
+                        Wy -= 1;
+                        Wx -= 1;
+                    }
                     break;
                 //Up-right
                 case '2' :
-                    Wy -= 1;
-                    Wx += 1;
+                    if(Wy == 0 || Wx == 7)
+                    {
+                        Console.WriteLine("You can´t go that way");
+                        PLayer_Wolf(ref Wy, ref Wx);
+                    }
+                    else
+                    {
+                        Wy -= 1;
+                        Wx += 1;  
+                    }
                     break;
                 //Down-left
                 case '3' :
-                    Wy += 1;
-                    Wx -= 1;
+                    if(Wy == 7 || Wx == 0)
+                    {
+                        Console.WriteLine("You can´t go that way");
+                        PLayer_Wolf(ref Wy, ref Wx);
+                    }
+                    else
+                    {
+                        Wy += 1;
+                        Wx -= 1;  
+                    }
                     break;
                 //Down-right
                 case '4':
-                    Wy += 1;
-                    Wx += 1;
+                    if(Wy == 7 || Wx == 7)
+                    {
+                        Console.WriteLine("You can´t go that way");
+                        PLayer_Wolf(ref Wy, ref Wx);
+                    }
+                    else
+                    {
+                        Wy += 1;
+                        Wx += 1; 
+                    }
                     break;
                 //in case of none of the above
                 default :

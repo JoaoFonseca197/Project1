@@ -14,6 +14,7 @@ namespace Project1
             int[] x_values = new int[4] {1,3,5,7};
             int x = rnd.Next(x_values.Length);
             int X = x_values[x];
+            int Gameover = 0;
             //Wolf Position
             int W_y = 0;
             int W_x = X;
@@ -34,7 +35,8 @@ namespace Project1
             //Game cicle
             do
             {
-                board(W_y, W_x, S1y, S1x, S2y, S2x, S3y, S3x, S4y, S4x);
+                board(W_y, W_x, S1y, S1x, S2y, S2x, S3y, S3x, S4y, S4x,
+                Gameover);
                 if (isWolfPlaying)
                 {
                     PLayer_Wolf(ref W_y, ref W_x);
@@ -42,10 +44,12 @@ namespace Project1
                 }
                 else
                 {
-                    Player_Sheep(ref S1y, ref S1x, ref S2y, ref S2x, ref S3y, ref S3x, ref S4y, ref S4x);
+                    Player_Sheep(ref S1y, ref S1x, ref S2y, ref S2x,
+                    ref S3y, ref S3x, ref S4y, ref S4x);
                     isWolfPlaying = true;
                 }
-            } while (true);//Mudar a condição conforme parametros de vitória
+                
+            } while (Gameover != 1);//Mudar a condição conforme parametros de vitória
 
         }
 
@@ -103,6 +107,12 @@ namespace Project1
                     Wy += 1;
                     Wx += 1;
                     break;
+                //in case of none of the above
+                default :
+                    Console.WriteLine("Unvalid movement, please choose again.");
+                    PLayer_Wolf(ref Wy, ref Wx);
+                    break;
+                
 
 
             }
@@ -222,7 +232,8 @@ namespace Project1
                                   int S1y, int S1x,
                                   int S2y, int S2x,
                                   int S3y, int S3x,
-                                  int S4y, int S4x) 
+                                  int S4y, int S4x,
+                                  ref int Gameover) 
         {
             string [,] matrix;
             int lins = 8, cols = 8;
@@ -240,13 +251,17 @@ namespace Project1
                     matrix [i,j]= "   ";
                 }
             }
+            // Wolf Wins
             
             matrix[Wy,Wx] = " W ";
             matrix[S1y, S1x] = " 1 ";
             matrix[S2y, S2x] = " 2 ";
             matrix[S3y, S3x] = " 3 ";
             matrix[S4y, S4x] = " 4 ";
-
+            if( Wy == 7)
+            {
+                Console.WriteLine("Congrats Wolf wins");
+            }
             // show the matrix
             for (int i = 0; i < lins; i++)
             {
@@ -258,6 +273,19 @@ namespace Project1
             }
             Console.WriteLine("  ---------------------------------");
             Console.WriteLine("    A   B   C   D   E   F   G   H  ");
+
+            // Wolf wins message
+            if( Wy == 7)
+            {
+                Console.WriteLine("Congrats Wolf wins");
+                Gameover = 1;
+                
+            }
         }
+        /*
+        private static void Wolf_GameOver()
+        {
+            
+        }*/
     }
 }

@@ -31,6 +31,7 @@ namespace Project1
             int S4y = 7;
             int S4x = 6;
 
+            //Starting Message Shown to the Players
             Console.WriteLine("\nWelcome To the Wolf and Sheeps Board Games!\n");
             Console.WriteLine("The Wolf is represented by the letter W.");
             Console.WriteLine("The Sheeps are represented by their names: 1, 2, 3 and 4.\n");
@@ -41,10 +42,12 @@ namespace Project1
             Console.ReadLine();
 
             bool IsWolfPlaying = true;
-            //Game cicle
+            //Game loop
             do
             {
+                //Draws the board along with the sheeps and wolf position
                 board(W_y, W_x, S1y, S1x, S2y, S2x, S3y, S3x, S4y, S4x);
+                //Wolf round
                 if (IsWolfPlaying == true)
                 {
                     PLayer_Wolf(ref W_y, ref W_x,
@@ -54,11 +57,13 @@ namespace Project1
                     ref S4y, ref S4x);
                     IsWolfPlaying = false;
                 }
+                //Wolf Winning Verification
                 else if (W_y == 7)
                 {
                     Console.WriteLine("Wolf Wins The Game!");
                     break;
                 }
+                //Sheeps round
                 else if (IsWolfPlaying == false)
                 {
                     Player_Sheep(ref S1y, ref S1x, ref S2y, ref S2x,
@@ -66,15 +71,19 @@ namespace Project1
                     IsWolfPlaying = true;
 
                 }
-
+                //Sheeps winning verification
             } while (Win_Condition(W_y, W_x,
                     S1y, S1x,
                     S2y, S2x,
                     S3y, S3x,
-                    S4y, S4x));//Mudar a condição conforme parametros de vitória
+                    S4y, S4x));
 
         }
 
+        /// <summary>
+        /// Verifies if thye wolf can't move
+        /// </summary>
+        /// <returns>Boolenean that stops or continues the game loop</returns>
         private static bool Win_Condition(int Wy, int Wx,
             int S1y, int S1x,
             int S2y, int S2x,

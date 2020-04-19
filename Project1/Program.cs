@@ -8,7 +8,8 @@ namespace Project1
     {
         static void Main(string[] args)
         {
-            Console.OutputEncoding = Encoding.UTF8;
+            
+			Console.OutputEncoding = Encoding.UTF8;
             //variables
             Random rnd = new Random ();
             int[] x_values = new int[4] {1,3,5,7};
@@ -39,7 +40,7 @@ namespace Project1
                 Gameover);
                 if (isWolfPlaying)
                 {
-                    PLayer_Wolf(ref W_y, ref W_x);
+                    PLayer_Wolf(ref W_y, ref W_x, ref S1y, ref S1x, ref S2y, ref S2x, ref S3y, ref S3x, ref S4y, ref S4x);
                     isWolfPlaying = false;
                 }
                 else
@@ -50,7 +51,7 @@ namespace Project1
                 }
                 
             } while (Gameover != 1);//Mudar a condição conforme parametros de vitória
-
+			
         }
 
 
@@ -60,7 +61,7 @@ namespace Project1
         /// </summary>
         /// <param name="W_y">Position of the Wolf in Y coodinates</param>
         /// <param name="W_x">Position of the Wolf in X coodinates</param>
-        private static void PLayer_Wolf (ref int W_y, ref int W_x)
+        private static void PLayer_Wolf (ref int W_y, ref int W_x, ref int S1y, ref int S1x, ref int S2y, ref int S2x, ref int S3y, ref int S3x, ref int S4y, ref int S4x)
         {
             string str;
             int Movement;
@@ -69,7 +70,7 @@ namespace Project1
             Console.WriteLine("3. \u2B0B 4. \u2B0A ");
             str = Console.ReadLine();
             Movement = int.Parse(str);
-            Wolf_movement(Movement,ref W_y,ref W_x);
+            Wolf_movement(Movement,ref W_y,ref W_x,ref S1y, ref S1x, ref S2y, ref S2x, ref S3y, ref S3x, ref S4y, ref S4x);
             
         }
 
@@ -83,40 +84,78 @@ namespace Project1
         /// represents a direction</param>
         /// <param name="Wy">Position of the Wolf in Y coodinates</param>
         /// <param name="Wx">Position of the Wolf in X coodinates</param>
-        private static void Wolf_movement ( int choice, ref int Wy , ref int Wx)
+        private static void Wolf_movement ( int choice, ref int Wy , ref int Wx , ref int S1y , ref int S1x, ref int S2y, ref int S2x, ref int S3y, ref int S3x, ref int S4y, ref int S4x)
         {
             switch (choice)
             {
                 //Up-left
                 case 1 :
-                    Wy -= 1;
-                    Wx -= 1;
-                    break;
+                if ((((Wy - 1) == S1y) && ((Wx - 1) == S1x)) || (((Wy - 1) == S2y) && ((Wx - 1) == S2x)) || (((Wy - 1) == S3y) && ((Wx - 1) == S3x)) || (((Wy - 1) == S4y) && ((Wx - 1) == S4x))) // if wolf position equals sheep position
+				{
+					Console.WriteLine("You Cant move there.");
+                    PLayer_Wolf(ref Wy, ref Wx, ref S1y, ref S1x, ref S2y, ref S2x, ref S3y, ref S3x, ref S4y, ref S4x);
+					
+				}
+				else
+				{
+					Wy -= 1;
+					Wx -= 1;
+				}
+				break;
                 //Up-right
                 case 2 :
+				if ((((Wy - 1) == S1y) && ((Wx + 1) == S1x)) || (((Wy - 1) == S2y) && ((Wx + 1) == S2x)) || (((Wy - 1) == S3y) && ((Wx + 1) == S3x)) || (((Wy - 1) == S4y) && ((Wx + 1) == S4x))) // if wolf position equals sheep position
+				{
+					Console.WriteLine("You Cant move there.");
+                    PLayer_Wolf(ref Wy, ref Wx, ref S1y, ref S1x, ref S2y, ref S2x, ref S3y, ref S3x, ref S4y, ref S4x);
+					
+				}
+				else
+				{				
                     Wy -= 1;
                     Wx += 1;
+				}
                     break;
                 //Down-left
                 case 3 :
+				if ((((Wy + 1) == S1y) && ((Wx - 1) == S1x)) || (((Wy + 1) == S2y) && ((Wx - 1) == S2x)) || (((Wy + 1) == S3y) && ((Wx - 1) == S3x)) || (((Wy + 1) == S4y) && ((Wx - 1) == S4x))) // if wolf position equals sheep position
+				{
+					Console.WriteLine("You Cant move there.");
+                    PLayer_Wolf(ref Wy, ref Wx, ref S1y, ref S1x, ref S2y, ref S2x, ref S3y, ref S3x, ref S4y, ref S4x);
+					
+				}
+				else
+				{
                     Wy += 1;
                     Wx -= 1;
+				}
                     break;
                 //Down-right
                 case 4:
+				if ((((Wy + 1) == S1y) && ((Wx + 1) == S1x)) || (((Wy + 1) == S2y) && ((Wx + 1) == S2x)) || (((Wy + 1) == S3y) && ((Wx + 1) == S3x)) || (((Wy + 1) == S4y) && ((Wx + 1) == S4x))) // if wolf position equals sheep position
+				{
+					Console.WriteLine("You Cant move there.");
+                    PLayer_Wolf(ref Wy, ref Wx, ref S1y, ref S1x, ref S2y, ref S2x, ref S3y, ref S3x, ref S4y, ref S4x);
+					
+				}
+				else
+				{
                     Wy += 1;
                     Wx += 1;
+				}
                     break;
                 //in case of none of the above
                 default :
                     Console.WriteLine("Unvalid movement, please choose again.");
-                    PLayer_Wolf(ref Wy, ref Wx);
+                    PLayer_Wolf(ref Wy, ref Wx, ref S1y, ref S1x, ref S2y, ref S2x, ref S3y, ref S3x, ref S4y, ref S4x);
                     break;
                 
 
 
             }
         }
+		
+		
 
         /// <summary>
         /// Chooses one of the 4 sheeps available to move them
@@ -233,7 +272,7 @@ namespace Project1
                                   int S2y, int S2x,
                                   int S3y, int S3x,
                                   int S4y, int S4x,
-                                  ref int Gameover) 
+                                   int Gameover) 
         {
             string [,] matrix;
             int lins = 8, cols = 8;

@@ -67,8 +67,67 @@ namespace Project1
 
                 }
 
-            } while (true);//Mudar a condição conforme parametros de vitória
+            } while (Win_Condition(W_y, W_x,
+                    S1y, S1x,
+                    S2y, S2x,
+                    S3y, S3x,
+                    S4y, S4x));//Mudar a condição conforme parametros de vitória
 
+        }
+
+        private static bool Win_Condition(int Wy, int Wx,
+            int S1y, int S1x,
+            int S2y, int S2x,
+            int S3y, int S3x,
+            int S4y, int S4x)
+        {
+            int cant_move = 0;
+            //Up-left
+            if ((Wy == 0 || Wx == 0) || ((((Wy - 1) == S1y)
+            && ((Wx - 1) == S1x)) || (((Wy - 1) == S2y)
+            && ((Wx - 1) == S2x)) || (((Wy - 1) == S3y)
+            && ((Wx - 1) == S3x)) || (((Wy - 1) == S4y)
+            && ((Wx - 1) == S4x))))
+            // if wolf position equals sheep position
+            {
+                cant_move++;
+            }
+            //Up-right
+            if ((Wy == 0 || Wx == 7) || ((((Wy - 1) == S1y)
+            && ((Wx + 1) == S1x)) || (((Wy - 1) == S2y)
+            && ((Wx + 1) == S2x)) || (((Wy - 1) == S3y)
+            && ((Wx + 1) == S3x)) || (((Wy - 1) == S4y)
+            && ((Wx + 1) == S4x))))
+            // if wolf position equals sheep position
+            {
+                cant_move++;
+            }
+            //Down-left
+            if ((Wy == 7 || Wx == 0) || ((((Wy + 1) == S1y)
+            && ((Wx - 1) == S1x)) || (((Wy + 1) == S2y)
+            && ((Wx - 1) == S2x)) || (((Wy + 1) == S3y)
+            && ((Wx - 1) == S3x)) || (((Wy + 1) == S4y)
+            && ((Wx - 1) == S4x))))
+            // if wolf position equals sheep position
+            {
+                cant_move++;
+            }
+            //Down-right
+            if ((Wy == 7 || Wx == 7) || ((((Wy + 1) == S1y)
+            && ((Wx + 1) == S1x)) || (((Wy + 1) == S2y)
+            && ((Wx + 1) == S2x)) || (((Wy + 1) == S3y)
+            && ((Wx + 1) == S3x)) || (((Wy + 1) == S4y)
+            && ((Wx + 1) == S4x))))
+            // if wolf position equals sheep position
+            {
+                cant_move++;
+            }
+            if (cant_move == 4)
+            {
+                Console.WriteLine("Sheep Wins the Game!");
+                return false;
+            }
+            return true;
         }
 
 

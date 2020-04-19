@@ -179,7 +179,7 @@ namespace Project1
                         Console.WriteLine("Move Sheep 4");
                         return 4;
                     default:
-                        Console.WriteLine("Unvalid Sheep, please choose again.");
+                        Console.WriteLine("Invalid Sheep, please choose again.");
                         break;
                 }
             }
@@ -241,20 +241,45 @@ namespace Project1
         /// <param name="sx"> X coordinate for the selected Sheep </param>
         private static void Sheep_Movement(char sChoice, ref int sy, ref int sx)
         {
+            bool loop = true;
+            string new_choice;
+            while (loop)
+            {
                 switch (sChoice)
                 {
                     //Up-left
                     case '1':
-                        sy -= 1;
-                        sx -= 1;
+                        if (sy == 0 || sx == 0)
+                        {
+                            Console.WriteLine("You can't go that way");
+                            new_choice = Console.ReadLine();
+                            sChoice = char.Parse(new_choice);
+                        }
+                        else
+                        {
+                            sy -= 1;
+                            sx -= 1;
+                            loop = false;
+                        }
                         break;
+                        
                     //Up-right
                     case '2':
-                        sy -= 1;
-                        sx += 1;
+                        if (sy == 0 || sx == 7)
+                        {
+                            Console.WriteLine("You can't go that way");
+                            new_choice = Console.ReadLine();
+                            sChoice = char.Parse(new_choice);
+                        }
+                        else
+                        {
+                            sy -= 1;
+                            sx += 1;
+                            loop = false;
+                        }
                         break;
-                    
                 }
+            }
         }
 
         /// <summary>

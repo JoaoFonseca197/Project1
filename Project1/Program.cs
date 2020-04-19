@@ -178,6 +178,11 @@ namespace Project1
             Console.WriteLine("Sheep Commands");
             Console.WriteLine("1. \u2B09 2. \u2B08 ");
             str = Console.ReadLine();
+            while (str != "1" && str != "2")
+            {
+                Console.WriteLine("Invalid Movement, please try again");
+                str = Console.ReadLine();
+            }
             Movement = int.Parse(str);
 
             switch(sChoice)
@@ -200,9 +205,9 @@ namespace Project1
         /// <summary>
         /// Moves the previously selected cheep only in the upward direction
         /// </summary>
-        /// <param name="sChoice"></param>
-        /// <param name="sy"></param>
-        /// <param name="sx"></param>
+        /// <param name="sChoice"> Chosen Movement for the Sheep </param>
+        /// <param name="sy"> Y coordinate for the selected Sheep </param>
+        /// <param name="sx"> X coordinate for the selected Sheep </param>
         private static void Sheep_Movement(int sChoice, ref int sy, ref int sx)
         {
                 switch (sChoice)

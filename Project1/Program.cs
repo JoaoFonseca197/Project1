@@ -79,7 +79,7 @@ namespace Project1
         /// This method after the player´s <see cref="choice"/> will change the
         /// coordinates
         /// </summary>
-        /// <param name="choice">Choices are 1 through 4 and each 
+        /// <param name="choice">Choices are 1 through 4 and each</param>
         /// represents a direction</param>
         /// <param name="Wy">Position of the Wolf in Y coodinates</param>
         /// <param name="Wx">Position of the Wolf in X coodinates</param>

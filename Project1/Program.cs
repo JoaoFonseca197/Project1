@@ -6,8 +6,6 @@ namespace Project1
 {
     class Program
     {
-
-
         static void Main(string[] args)
         {
 
@@ -33,6 +31,15 @@ namespace Project1
             int S4y = 7;
             int S4x = 6;
 
+            Console.WriteLine("\nWelcome To the Wolf and Sheeps Board Games!\n");
+            Console.WriteLine("The Wolf is represented by the letter W.");
+            Console.WriteLine("The Sheeps are represented by their names: 1, 2, 3 and 4.\n");
+            Console.WriteLine("For the Wolf to Win the Game he must reach one of the Sheeps initial position.");
+            Console.WriteLine("For the Sheeps to win the Game they must surround the Wolf.\n");
+            Console.WriteLine("Follow the instructions given during the game to play.\n");
+            Console.WriteLine("Write anything to start. Good Luck!");
+            Console.ReadLine();
+
             bool IsWolfPlaying = true;
             //Game cicle
             do
@@ -49,7 +56,7 @@ namespace Project1
                 }
                 else if (W_y == 7)
                 {
-                    Console.WriteLine("Wolf Wins yay!");
+                    Console.WriteLine("Wolf Wins The Game!");
                     break;
                 }
                 else if (IsWolfPlaying == false)
@@ -80,8 +87,8 @@ namespace Project1
             string str;
             char Movement;
             Console.WriteLine("Wolf Commands");
-            Console.WriteLine("1. \u2B09 2. \u2B08 ");
-            Console.WriteLine("3. \u2B0B 4. \u2B0A ");
+            Console.WriteLine("\u2B09 1.      2. \u2B08 ");
+            Console.WriteLine("\u2B0B 3.      4. \u2B0A ");
             str = Console.ReadLine();
             Movement = char.Parse(str);
             Wolf_movement(Movement, ref W_y, ref W_x,
@@ -281,7 +288,7 @@ namespace Project1
             string str;
             char Movement;
             Console.WriteLine("Sheep Commands");
-            Console.WriteLine("1. \u2B09 2. \u2B08 ");
+            Console.WriteLine("\u2B09 1.     2. \u2B08 ");
             str = Console.ReadLine();
             while (str != "1" && str != "2")
             {

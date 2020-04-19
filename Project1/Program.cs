@@ -36,7 +36,7 @@ namespace Project1
             do
             {
                 board(W_y, W_x, S1y, S1x, S2y, S2x, S3y, S3x, S4y, S4x,
-                Gameover);
+                ref Gameover);
                 if (isWolfPlaying)
                 {
                     PLayer_Wolf(ref W_y, ref W_x);
@@ -109,7 +109,7 @@ namespace Project1
                     break;
                 //in case of none of the above
                 default :
-                    Console.WriteLine("Unvalid movement, please choose again.");
+                    Console.WriteLine("Invalid movement, please choose again.");
                     PLayer_Wolf(ref Wy, ref Wx);
                     break;
                 
@@ -121,6 +121,7 @@ namespace Project1
         /// <summary>
         /// Chooses one of the 4 sheeps available to move them
         /// </summary>
+        /// <returns></returns>
         private static int Sheep_Choice()
         {
             string sheep;
@@ -135,16 +136,16 @@ namespace Project1
                 switch (Chosen_Sheep)
                 {
                     case 1:
-                        Console.WriteLine("S1");
+                        Console.WriteLine("Move Sheep 1");
                         return 1;
                     case 2:
-                        Console.WriteLine("S2");
+                        Console.WriteLine("Move Sheep 2");
                         return 2;
                     case 3:
-                        Console.WriteLine("S3");
+                        Console.WriteLine("Move Sheep 3");
                         return 3;
                     case 4:
-                        Console.WriteLine("S4");
+                        Console.WriteLine("Move Sheep 4");
                         return 4;
                     default:
                         Console.WriteLine("Unvalid Sheep, please choose again.");
@@ -157,14 +158,14 @@ namespace Project1
         /// Calls the function to choose which cheep
         /// Moves the selected cheep
         /// </summary>
-        /// <param name="S1y"></param>
-        /// <param name="S1x"></param>
-        /// <param name="S2y"></param>
-        /// <param name="S2x"></param>
-        /// <param name="S3y"></param>
-        /// <param name="S3x"></param>
-        /// <param name="S4y"></param>
-        /// <param name="S4x"></param>
+        /// <param name="S1y">Sheep 1 Y Coordinate</param>
+        /// <param name="S1x">Sheep 1 X Coordinate</param>
+        /// <param name="S2y">Sheep 2 Y Coordinate</param>
+        /// <param name="S2x">Sheep 2 X Coordinate</param>
+        /// <param name="S3y">Sheep 3 Y Coordinate</param>
+        /// <param name="S3x">Sheep 3 X Coordinate</param>
+        /// <param name="S4y">Sheep 4 Y Coordinate</param>
+        /// <param name="S4x">Sheep 4 X Coordinate</param>
         private static void Player_Sheep(ref int S1y, ref int S1x,
                                          ref int S2y, ref int S2x,
                                          ref int S3y, ref int S3x,
@@ -194,10 +195,6 @@ namespace Project1
                     Sheep_Movement(Movement, ref S4y, ref S4x);
                     break;
             }
-            
-
-
-
         }
 
         /// <summary>
@@ -208,19 +205,19 @@ namespace Project1
         /// <param name="sx"></param>
         private static void Sheep_Movement(int sChoice, ref int sy, ref int sx)
         {
-            switch (sChoice)
-            {
-                //Up-left
-                case 1:
-                    sy -= 1;
-                    sx -= 1;
-                    break;
-                //Up-right
-                case 2:
-                    sy -= 1;
-                    sx += 1;
-                    break;
-            }
+                switch (sChoice)
+                {
+                    //Up-left
+                    case 1:
+                        sy -= 1;
+                        sx -= 1;
+                        break;
+                    //Up-right
+                    case 2:
+                        sy -= 1;
+                        sx += 1;
+                        break;
+                }
         }
 
         /// <summary>
@@ -251,17 +248,12 @@ namespace Project1
                     matrix [i,j]= "   ";
                 }
             }
-            // Wolf Wins
             
             matrix[Wy,Wx] = " W ";
             matrix[S1y, S1x] = " 1 ";
             matrix[S2y, S2x] = " 2 ";
             matrix[S3y, S3x] = " 3 ";
             matrix[S4y, S4x] = " 4 ";
-            if( Wy == 7)
-            {
-                Console.WriteLine("Congrats Wolf wins");
-            }
             // show the matrix
             for (int i = 0; i < lins; i++)
             {

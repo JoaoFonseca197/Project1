@@ -45,7 +45,7 @@ namespace Project1
                 else
                 {
                     Player_Sheep(ref S1y, ref S1x, ref S2y, ref S2x,
-                    ref S3y, ref S3x, ref S4y, ref S4x);
+                    ref S3y, ref S3x, ref S4y, ref S4x, ref W_y, ref W_x);
                     isWolfPlaying = true;
                 }
                 
@@ -209,7 +209,8 @@ namespace Project1
         private static void Player_Sheep(ref int S1y, ref int S1x,
                                          ref int S2y, ref int S2x,
                                          ref int S3y, ref int S3x,
-                                         ref int S4y, ref int S4x)
+                                         ref int S4y, ref int S4x,
+										 ref int Wy, ref int Wx)
         {
             //Choose a Sheep
             int sChoice = Sheep_Choice();
@@ -228,16 +229,16 @@ namespace Project1
             switch(sChoice)
             {
                 case 1:
-                    Sheep_Movement(Movement, ref S1y, ref S1x);
+                    Sheep_Movement(Movement, ref S1y, ref S1x, ref S1y, ref S1x, ref S2y, ref S2x, ref S3y, ref S3x, ref S4y, ref S4x, ref Wy, ref Wx);
                     break;
                 case 2:
-                    Sheep_Movement(Movement, ref S2y, ref S2x);
+                    Sheep_Movement(Movement, ref S2y, ref S2x, ref S1y, ref S1x, ref S2y, ref S2x, ref S3y, ref S3x, ref S4y, ref S4x, ref Wy, ref Wx);
                     break;
                 case 3:
-                    Sheep_Movement(Movement, ref S3y, ref S3x);
+                    Sheep_Movement(Movement, ref S3y, ref S3x, ref S1y, ref S1x, ref S2y, ref S2x, ref S3y, ref S3x, ref S4y, ref S4x, ref Wy, ref Wx);
                     break;
                 case 4:
-                    Sheep_Movement(Movement, ref S4y, ref S4x);
+                    Sheep_Movement(Movement, ref S4y, ref S4x, ref S1y, ref S1x, ref S2y, ref S2x, ref S3y, ref S3x, ref S4y, ref S4x, ref Wy, ref Wx);
                     break;
             }
         }
@@ -248,8 +249,13 @@ namespace Project1
         /// <param name="sChoice"> Chosen Movement for the Sheep </param>
         /// <param name="sy"> Y coordinate for the selected Sheep </param>
         /// <param name="sx"> X coordinate for the selected Sheep </param>
-        private static void Sheep_Movement(char sChoice, ref int sy, ref int sx)
+        private static void Sheep_Movement(char sChoice, ref int sy, ref int sx, ref int S1y, ref int S1x,
+                                         ref int S2y, ref int S2x,
+                                         ref int S3y, ref int S3x,
+                                         ref int S4y, ref int S4x,
+										 ref int Wy, ref int Wx)
         {
+			
             bool loop = true;
             string new_choice;
             while (loop)
@@ -258,7 +264,7 @@ namespace Project1
                 {
                     //Up-left
                     case '1':
-                        if (sy == 0 || sx == 0)
+                        if ((sy == 0 || sx == 0) || ((((sy - 1) == S1y) && ((sx - 1) == S1x)) || (((sy - 1) == S2y) && ((sx - 1) == S2x)) || (((sy - 1) == S3y) && ((sx - 1) == S3x)) || (((sy - 1) == S4y) && ((sx - 1) == S4x)) || (((sy - 1) == Wy) && ((sx - 1) == Wx))))
                         {
                             Console.WriteLine("You can't go that way");
                             new_choice = Console.ReadLine();
@@ -274,7 +280,7 @@ namespace Project1
                         
                     //Up-right
                     case '2':
-                        if (sy == 0 || sx == 7)
+                        if ((sy == 0 || sx == 7)  || ((((sy - 1) == S1y) && ((sx + 1) == S1x)) || (((sy + 1) == S2y) && ((sx + 1) == S2x)) || (((sy - 1) == S3y) && ((sx + 1) == S3x)) || (((sy - 1) == S4y) && ((sx + 1) == S4x)) || (((sy - 1) == Wy) && ((sx + 1) == Wx))))
                         {
                             Console.WriteLine("You can't go that way");
                             new_choice = Console.ReadLine();

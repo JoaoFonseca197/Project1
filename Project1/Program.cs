@@ -35,8 +35,7 @@ namespace Project1
             //Game cicle
             do
             {
-                board(W_y, W_x, S1y, S1x, S2y, S2x, S3y, S3x, S4y, S4x,
-                Gameover);
+                board(W_y, W_x, S1y, S1x, S2y, S2x, S3y, S3x, S4y, S4x);
                 if (isWolfPlaying)
                 {
                     PLayer_Wolf(ref W_y, ref W_x);
@@ -63,12 +62,12 @@ namespace Project1
         private static void PLayer_Wolf (ref int W_y, ref int W_x)
         {
             string str;
-            int Movement;
+            char Movement;
             Console.WriteLine("Wolf Commands"); //testando se consegui fazer o commit
             Console.WriteLine("1. \u2B09 2. \u2B08 ");
             Console.WriteLine("3. \u2B0B 4. \u2B0A ");
             str = Console.ReadLine();
-            Movement = int.Parse(str);
+            Movement = char.Parse(str);
             Wolf_movement(Movement,ref W_y,ref W_x);
             
         }
@@ -79,31 +78,31 @@ namespace Project1
         /// This method after the player´s <see cref="choice"/> will change the
         /// coordinates
         /// </summary>
-        /// <param name="choice">Choices are 1 through 4 and each</param>
+        /// <param name="choice">Choices are 1 through 4 and each 
         /// represents a direction</param>
         /// <param name="Wy">Position of the Wolf in Y coodinates</param>
         /// <param name="Wx">Position of the Wolf in X coodinates</param>
-        private static void Wolf_movement ( int choice, ref int Wy , ref int Wx)
+        private static void Wolf_movement ( char choice, ref int Wy , ref int Wx)
         {
             switch (choice)
             {
                 //Up-left
-                case 1 :
+                case '1':
                     Wy -= 1;
                     Wx -= 1;
                     break;
                 //Up-right
-                case 2 :
+                case '2' :
                     Wy -= 1;
                     Wx += 1;
                     break;
                 //Down-left
-                case 3 :
+                case '3' :
                     Wy += 1;
                     Wx -= 1;
                     break;
                 //Down-right
-                case 4:
+                case '4':
                     Wy += 1;
                     Wx += 1;
                     break;
@@ -232,8 +231,7 @@ namespace Project1
                                   int S1y, int S1x,
                                   int S2y, int S2x,
                                   int S3y, int S3x,
-                                  int S4y, int S4x,
-                                  ref int Gameover) 
+                                  int S4y, int S4x) 
         {
             string [,] matrix;
             int lins = 8, cols = 8;
@@ -274,18 +272,7 @@ namespace Project1
             Console.WriteLine("  ---------------------------------");
             Console.WriteLine("    A   B   C   D   E   F   G   H  ");
 
-            // Wolf wins message
-            if( Wy == 7)
-            {
-                Console.WriteLine("Congrats Wolf wins");
-                Gameover = 1;
-                
-            }
+
         }
-        /*
-        private static void Wolf_GameOver()
-        {
-            
-        }*/
     }
 }

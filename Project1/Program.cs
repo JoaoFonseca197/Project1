@@ -60,7 +60,7 @@ namespace Project1
         {
             string str;
             int Movement;
-            Console.WriteLine("Wolf Commands");
+            Console.WriteLine("Wolf Commands"); //testando se consegui fazer o commit
             Console.WriteLine("1. \u2B09 2. \u2B08 ");
             Console.WriteLine("3. \u2B0B 4. \u2B0A ");
             str = Console.ReadLine();

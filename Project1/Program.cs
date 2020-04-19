@@ -84,7 +84,11 @@ namespace Project1
             Console.WriteLine("3. \u2B0B 4. \u2B0A ");
             str = Console.ReadLine();
             Movement = char.Parse(str);
-            Wolf_movement(Movement, ref W_y, ref W_x, ref S1y, ref S1x, ref S2y, ref S2x, ref S3y, ref S3x, ref S4y, ref S4x);
+            Wolf_movement(Movement, ref W_y, ref W_x,
+            ref S1y, ref S1x,
+            ref S2y, ref S2x,
+            ref S3y, ref S3x,
+            ref S4y, ref S4x);
 
 
         }

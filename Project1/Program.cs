@@ -36,8 +36,7 @@ namespace Project1
             //Game cicle
             do
             {
-                board(W_y, W_x, S1y, S1x, S2y, S2x, S3y, S3x, S4y, S4x,
-                Gameover);
+                board(W_y, W_x, S1y, S1x, S2y, S2x, S3y, S3x, S4y, S4x);
                 if (isWolfPlaying)
                 {
                     PLayer_Wolf(ref W_y, ref W_x, ref S1y, ref S1x, ref S2y, ref S2x, ref S3y, ref S3x, ref S4y, ref S4x);
@@ -50,7 +49,7 @@ namespace Project1
                     isWolfPlaying = true;
                 }
                 
-            } while (Gameover != 1);//Mudar a condição conforme parametros de vitória
+            } while (true);//Mudar a condição conforme parametros de vitória
 			
         }
 
@@ -64,13 +63,14 @@ namespace Project1
         private static void PLayer_Wolf (ref int W_y, ref int W_x, ref int S1y, ref int S1x, ref int S2y, ref int S2x, ref int S3y, ref int S3x, ref int S4y, ref int S4x)
         {
             string str;
-            int Movement;
+            char Movement;
             Console.WriteLine("Wolf Commands"); //testando se consegui fazer o commit
             Console.WriteLine("1. \u2B09 2. \u2B08 ");
             Console.WriteLine("3. \u2B0B 4. \u2B0A ");
             str = Console.ReadLine();
-            Movement = int.Parse(str);
+            Movement = char.Parse(str);
             Wolf_movement(Movement,ref W_y,ref W_x,ref S1y, ref S1x, ref S2y, ref S2x, ref S3y, ref S3x, ref S4y, ref S4x);
+
             
         }
 
@@ -84,13 +84,14 @@ namespace Project1
         /// represents a direction</param>
         /// <param name="Wy">Position of the Wolf in Y coodinates</param>
         /// <param name="Wx">Position of the Wolf in X coodinates</param>
+
         private static void Wolf_movement ( int choice, ref int Wy , ref int Wx , ref int S1y , ref int S1x, ref int S2y, ref int S2x, ref int S3y, ref int S3x, ref int S4y, ref int S4x)
         {
             switch (choice)
             {
                 //Up-left
-                case 1 :
-                if ((((Wy - 1) == S1y) && ((Wx - 1) == S1x)) || (((Wy - 1) == S2y) && ((Wx - 1) == S2x)) || (((Wy - 1) == S3y) && ((Wx - 1) == S3x)) || (((Wy - 1) == S4y) && ((Wx - 1) == S4x))) // if wolf position equals sheep position
+                case '1' :
+                if ((Wy == 0 || Wx == 0) || ((((Wy - 1) == S1y) && ((Wx - 1) == S1x)) || (((Wy - 1) == S2y) && ((Wx - 1) == S2x)) || (((Wy - 1) == S3y) && ((Wx - 1) == S3x)) || (((Wy - 1) == S4y) && ((Wx - 1) == S4x)))) // if wolf position equals sheep position
 				{
 					Console.WriteLine("You Cant move there.");
                     PLayer_Wolf(ref Wy, ref Wx, ref S1y, ref S1x, ref S2y, ref S2x, ref S3y, ref S3x, ref S4y, ref S4x);
@@ -103,8 +104,8 @@ namespace Project1
 				}
 				break;
                 //Up-right
-                case 2 :
-				if ((((Wy - 1) == S1y) && ((Wx + 1) == S1x)) || (((Wy - 1) == S2y) && ((Wx + 1) == S2x)) || (((Wy - 1) == S3y) && ((Wx + 1) == S3x)) || (((Wy - 1) == S4y) && ((Wx + 1) == S4x))) // if wolf position equals sheep position
+                case '2' :
+				if ((Wy == 0 || Wx == 7) || ((((Wy - 1) == S1y) && ((Wx + 1) == S1x)) || (((Wy - 1) == S2y) && ((Wx + 1) == S2x)) || (((Wy - 1) == S3y) && ((Wx + 1) == S3x)) || (((Wy - 1) == S4y) && ((Wx + 1) == S4x)))) // if wolf position equals sheep position
 				{
 					Console.WriteLine("You Cant move there.");
                     PLayer_Wolf(ref Wy, ref Wx, ref S1y, ref S1x, ref S2y, ref S2x, ref S3y, ref S3x, ref S4y, ref S4x);
@@ -117,8 +118,8 @@ namespace Project1
 				}
                     break;
                 //Down-left
-                case 3 :
-				if ((((Wy + 1) == S1y) && ((Wx - 1) == S1x)) || (((Wy + 1) == S2y) && ((Wx - 1) == S2x)) || (((Wy + 1) == S3y) && ((Wx - 1) == S3x)) || (((Wy + 1) == S4y) && ((Wx - 1) == S4x))) // if wolf position equals sheep position
+                case '3' :
+				if ((Wy == 7 || Wx == 0) || ((((Wy + 1) == S1y) && ((Wx - 1) == S1x)) || (((Wy + 1) == S2y) && ((Wx - 1) == S2x)) || (((Wy + 1) == S3y) && ((Wx - 1) == S3x)) || (((Wy + 1) == S4y) && ((Wx - 1) == S4x)))) // if wolf position equals sheep position
 				{
 					Console.WriteLine("You Cant move there.");
                     PLayer_Wolf(ref Wy, ref Wx, ref S1y, ref S1x, ref S2y, ref S2x, ref S3y, ref S3x, ref S4y, ref S4x);
@@ -131,8 +132,8 @@ namespace Project1
 				}
                     break;
                 //Down-right
-                case 4:
-				if ((((Wy + 1) == S1y) && ((Wx + 1) == S1x)) || (((Wy + 1) == S2y) && ((Wx + 1) == S2x)) || (((Wy + 1) == S3y) && ((Wx + 1) == S3x)) || (((Wy + 1) == S4y) && ((Wx + 1) == S4x))) // if wolf position equals sheep position
+                case '4':
+				if ((Wy == 7 || Wx == 7) || ((((Wy + 1) == S1y) && ((Wx + 1) == S1x)) || (((Wy + 1) == S2y) && ((Wx + 1) == S2x)) || (((Wy + 1) == S3y) && ((Wx + 1) == S3x)) || (((Wy + 1) == S4y) && ((Wx + 1) == S4x)))) // if wolf position equals sheep position
 				{
 					Console.WriteLine("You Cant move there.");
                     PLayer_Wolf(ref Wy, ref Wx, ref S1y, ref S1x, ref S2y, ref S2x, ref S3y, ref S3x, ref S4y, ref S4x);
@@ -160,33 +161,34 @@ namespace Project1
         /// <summary>
         /// Chooses one of the 4 sheeps available to move them
         /// </summary>
+        /// <returns></returns>
         private static int Sheep_Choice()
         {
             string sheep;
-            int Chosen_Sheep;
+            char Chosen_Sheep;
             Console.WriteLine("Choose one of the Sheeps:");
             Console.WriteLine("1, 2, 3, 4.");
             while (true)
             {
                 sheep = Console.ReadLine();
-                Chosen_Sheep = int.Parse(sheep);
+                Chosen_Sheep = char.Parse(sheep);
 
                 switch (Chosen_Sheep)
                 {
-                    case 1:
-                        Console.WriteLine("S1");
+                    case '1':
+                        Console.WriteLine("Move Sheep 1");
                         return 1;
-                    case 2:
-                        Console.WriteLine("S2");
+                    case '2':
+                        Console.WriteLine("Move Sheep 2");
                         return 2;
-                    case 3:
-                        Console.WriteLine("S3");
+                    case '3':
+                        Console.WriteLine("Move Sheep 3");
                         return 3;
-                    case 4:
-                        Console.WriteLine("S4");
+                    case '4':
+                        Console.WriteLine("Move Sheep 4");
                         return 4;
                     default:
-                        Console.WriteLine("Unvalid Sheep, please choose again.");
+                        Console.WriteLine("Invalid Sheep, please choose again.");
                         break;
                 }
             }
@@ -196,14 +198,14 @@ namespace Project1
         /// Calls the function to choose which cheep
         /// Moves the selected cheep
         /// </summary>
-        /// <param name="S1y"></param>
-        /// <param name="S1x"></param>
-        /// <param name="S2y"></param>
-        /// <param name="S2x"></param>
-        /// <param name="S3y"></param>
-        /// <param name="S3x"></param>
-        /// <param name="S4y"></param>
-        /// <param name="S4x"></param>
+        /// <param name="S1y">Sheep 1 Y Coordinate</param>
+        /// <param name="S1x">Sheep 1 X Coordinate</param>
+        /// <param name="S2y">Sheep 2 Y Coordinate</param>
+        /// <param name="S2x">Sheep 2 X Coordinate</param>
+        /// <param name="S3y">Sheep 3 Y Coordinate</param>
+        /// <param name="S3x">Sheep 3 X Coordinate</param>
+        /// <param name="S4y">Sheep 4 Y Coordinate</param>
+        /// <param name="S4x">Sheep 4 X Coordinate</param>
         private static void Player_Sheep(ref int S1y, ref int S1x,
                                          ref int S2y, ref int S2x,
                                          ref int S3y, ref int S3x,
@@ -212,11 +214,16 @@ namespace Project1
             //Choose a Sheep
             int sChoice = Sheep_Choice();
             string str;
-            int Movement;
+            char Movement;
             Console.WriteLine("Sheep Commands");
             Console.WriteLine("1. \u2B09 2. \u2B08 ");
             str = Console.ReadLine();
-            Movement = int.Parse(str);
+            while (str != "1" && str != "2")
+            {
+                Console.WriteLine("Invalid Movement, please try again");
+                str = Console.ReadLine();
+            }
+            Movement = char.Parse(str);
 
             switch(sChoice)
             {
@@ -233,32 +240,54 @@ namespace Project1
                     Sheep_Movement(Movement, ref S4y, ref S4x);
                     break;
             }
-            
-
-
-
         }
 
         /// <summary>
         /// Moves the previously selected cheep only in the upward direction
         /// </summary>
-        /// <param name="sChoice"></param>
-        /// <param name="sy"></param>
-        /// <param name="sx"></param>
-        private static void Sheep_Movement(int sChoice, ref int sy, ref int sx)
+        /// <param name="sChoice"> Chosen Movement for the Sheep </param>
+        /// <param name="sy"> Y coordinate for the selected Sheep </param>
+        /// <param name="sx"> X coordinate for the selected Sheep </param>
+        private static void Sheep_Movement(char sChoice, ref int sy, ref int sx)
         {
-            switch (sChoice)
+            bool loop = true;
+            string new_choice;
+            while (loop)
             {
-                //Up-left
-                case 1:
-                    sy -= 1;
-                    sx -= 1;
-                    break;
-                //Up-right
-                case 2:
-                    sy -= 1;
-                    sx += 1;
-                    break;
+                switch (sChoice)
+                {
+                    //Up-left
+                    case '1':
+                        if (sy == 0 || sx == 0)
+                        {
+                            Console.WriteLine("You can't go that way");
+                            new_choice = Console.ReadLine();
+                            sChoice = char.Parse(new_choice);
+                        }
+                        else
+                        {
+                            sy -= 1;
+                            sx -= 1;
+                            loop = false;
+                        }
+                        break;
+                        
+                    //Up-right
+                    case '2':
+                        if (sy == 0 || sx == 7)
+                        {
+                            Console.WriteLine("You can't go that way");
+                            new_choice = Console.ReadLine();
+                            sChoice = char.Parse(new_choice);
+                        }
+                        else
+                        {
+                            sy -= 1;
+                            sx += 1;
+                            loop = false;
+                        }
+                        break;
+                }
             }
         }
 
@@ -271,8 +300,9 @@ namespace Project1
                                   int S1y, int S1x,
                                   int S2y, int S2x,
                                   int S3y, int S3x,
-                                  int S4y, int S4x,
-                                   int Gameover) 
+                                  int S4y, int S4x) 
+
+
         {
             string [,] matrix;
             int lins = 8, cols = 8;
@@ -290,17 +320,12 @@ namespace Project1
                     matrix [i,j]= "   ";
                 }
             }
-            // Wolf Wins
             
             matrix[Wy,Wx] = " W ";
             matrix[S1y, S1x] = " 1 ";
             matrix[S2y, S2x] = " 2 ";
             matrix[S3y, S3x] = " 3 ";
             matrix[S4y, S4x] = " 4 ";
-            if( Wy == 7)
-            {
-                Console.WriteLine("Congrats Wolf wins");
-            }
             // show the matrix
             for (int i = 0; i < lins; i++)
             {
@@ -313,18 +338,7 @@ namespace Project1
             Console.WriteLine("  ---------------------------------");
             Console.WriteLine("    A   B   C   D   E   F   G   H  ");
 
-            // Wolf wins message
-            if( Wy == 7)
-            {
-                Console.WriteLine("Congrats Wolf wins");
-                Gameover = 1;
-                
-            }
+
         }
-        /*
-        private static void Wolf_GameOver()
-        {
-            
-        }*/
     }
 }

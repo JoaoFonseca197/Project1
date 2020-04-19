@@ -6,6 +6,8 @@ namespace Project1
 {
     class Program
     {
+
+
         static void Main(string[] args)
         {
             
@@ -15,7 +17,6 @@ namespace Project1
             int[] x_values = new int[4] {1,3,5,7};
             int x = rnd.Next(x_values.Length);
             int X = x_values[x];
-            int Gameover = 0;
             //Wolf Position
             int W_y = 0;
             int W_x = X;
@@ -32,25 +33,31 @@ namespace Project1
             int S4y = 7;
             int S4x = 6;
 
-            bool isWolfPlaying = true;
+            bool IsWolfPlaying = true;
             //Game cicle
             do
             {
                 board(W_y, W_x, S1y, S1x, S2y, S2x, S3y, S3x, S4y, S4x);
-                if (isWolfPlaying)
+                if (IsWolfPlaying == true)
                 {
                     PLayer_Wolf(ref W_y, ref W_x, ref S1y, ref S1x, ref S2y, ref S2x, ref S3y, ref S3x, ref S4y, ref S4x);
-                    isWolfPlaying = false;
+                    IsWolfPlaying = false;
                 }
-                else
+                else if (W_y == 7)
+                {
+                    Console.WriteLine("Wolf Wins yay!");
+                    break;
+                }
+                else if (IsWolfPlaying == false)
                 {
                     Player_Sheep(ref S1y, ref S1x, ref S2y, ref S2x,
                     ref S3y, ref S3x, ref S4y, ref S4x, ref W_y, ref W_x);
-                    isWolfPlaying = true;
+                    IsWolfPlaying = true;
+
                 }
                 
             } while (true);//Mudar a condição conforme parametros de vitória
-			
+
         }
 
 

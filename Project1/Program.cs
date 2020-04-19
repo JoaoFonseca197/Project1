@@ -156,26 +156,26 @@ namespace Project1
         private static int Sheep_Choice()
         {
             string sheep;
-            int Chosen_Sheep;
+            char Chosen_Sheep;
             Console.WriteLine("Choose one of the Sheeps:");
             Console.WriteLine("1, 2, 3, 4.");
             while (true)
             {
                 sheep = Console.ReadLine();
-                Chosen_Sheep = int.Parse(sheep);
+                Chosen_Sheep = char.Parse(sheep);
 
                 switch (Chosen_Sheep)
                 {
-                    case 1:
+                    case '1':
                         Console.WriteLine("Move Sheep 1");
                         return 1;
-                    case 2:
+                    case '2':
                         Console.WriteLine("Move Sheep 2");
                         return 2;
-                    case 3:
+                    case '3':
                         Console.WriteLine("Move Sheep 3");
                         return 3;
-                    case 4:
+                    case '4':
                         Console.WriteLine("Move Sheep 4");
                         return 4;
                     default:
@@ -205,7 +205,7 @@ namespace Project1
             //Choose a Sheep
             int sChoice = Sheep_Choice();
             string str;
-            int Movement;
+            char Movement;
             Console.WriteLine("Sheep Commands");
             Console.WriteLine("1. \u2B09 2. \u2B08 ");
             str = Console.ReadLine();
@@ -214,7 +214,7 @@ namespace Project1
                 Console.WriteLine("Invalid Movement, please try again");
                 str = Console.ReadLine();
             }
-            Movement = int.Parse(str);
+            Movement = char.Parse(str);
 
             switch(sChoice)
             {
@@ -239,20 +239,21 @@ namespace Project1
         /// <param name="sChoice"> Chosen Movement for the Sheep </param>
         /// <param name="sy"> Y coordinate for the selected Sheep </param>
         /// <param name="sx"> X coordinate for the selected Sheep </param>
-        private static void Sheep_Movement(int sChoice, ref int sy, ref int sx)
+        private static void Sheep_Movement(char sChoice, ref int sy, ref int sx)
         {
                 switch (sChoice)
                 {
                     //Up-left
-                    case 1:
+                    case '1':
                         sy -= 1;
                         sx -= 1;
                         break;
                     //Up-right
-                    case 2:
+                    case '2':
                         sy -= 1;
                         sx += 1;
                         break;
+                    
                 }
         }
 
